@@ -1,0 +1,43 @@
+$user = auth()->user();
+$appId = App::where('slug', $slug)->firstOrFail()->id;
+
+// Assign role
+$user->assignRoleWithApp('admin', $appId);
+
+// Get roles
+$roles = $user->getAppRoleNames($appId);
+
+// Revoke role
+$user->revokeRoleFromApp('admin', $appId);
+
+// Update role
+$user->updateAppRole('moderator', 'editor', $appId);
+
+// Delete role
+$user->deleteAppRole('editor', $appId);
+
+use App\Traits\HasAppRoles;
+use App\Traits\HasAppPermissions;
+
+class User extends Authenticatable
+{
+    use HasAppRoles, HasAppPermissions;
+}
+
+$user = auth()->user();
+$appId = App::where('slug', $slug)->firstOrFail()->id;
+
+// Assign permission
+$user->giveAppPermissionTo('edit posts', $appId);
+
+// Get permissions
+$permissions = $user->getAppPermissionNames($appId);
+
+// Revoke permission
+$user->revokeAppPermissionTo('edit posts', $appId);
+
+// Update permission name
+$user->updateAppPermission('edit posts', 'modify posts', $appId);
+
+// Delete permission
+$user->deleteAppPermission('modify posts', $appId);
