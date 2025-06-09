@@ -102,10 +102,10 @@
       <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="w-4 h-4">
       <span>Google</span>
     </a>
-    <a href="{{ route('social.redirect', 'github') }}" class="bg-gray-800 text-white py-1.5 rounded-full text-sm flex items-center justify-center space-x-2 hover:bg-gray-900">
+    {{-- <a href="{{ route('social.redirect', 'github') }}" class="bg-gray-800 text-white py-1.5 rounded-full text-sm flex items-center justify-center space-x-2 hover:bg-gray-900">
       <i class="fab fa-github text-base"></i>
       <span>GitHub</span>
-    </a>
+    </a> --}}
       {{-- To be implemented later --}}
     <!-- Facebook -->
   {{-- <a href="#" class="bg-[#1877F2] hover:bg-[#166FE0] text-white font-semibold py-2 rounded-full flex items-center justify-center space-x-3 transition">

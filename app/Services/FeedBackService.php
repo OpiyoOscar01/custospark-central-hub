@@ -1,15 +1,15 @@
 <?php
 namespace App\Services;
 
-use App\Repositories\FeedbackRepository;
+use App\Repositories\FeedBackRepository;
     use Illuminate\Support\Facades\Storage;
 
 
 class FeedBackService
 {
-    protected FeedbackRepository $repo;
+    protected FeedBackRepository $repo;
 
-    public function __construct(FeedbackRepository $repo)
+    public function __construct(FeedBackRepository $repo)
     {
         $this->repo = $repo;
     }

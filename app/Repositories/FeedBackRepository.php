@@ -1,13 +1,13 @@
 <?php
 namespace App\Repositories;
 
-use App\Models\Feedback;
+use App\Models\FeedBack;
 
-class FeedbackRepository
+class FeedBackRepository
 {
     public function store(array $data): Feedback
 {
-    return Feedback::create([
+    return FeedBack::create([
         'user_id' => $data['user_id'],
         'app_id' => $data['app_id'],
         'type' => $data['type'],
@@ -20,6 +20,6 @@ class FeedbackRepository
 
     public function all()
     {
-        return Feedback::latest()->get();
+        return FeedBack::latest()->get();
     }
 }

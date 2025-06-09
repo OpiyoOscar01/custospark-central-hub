@@ -1,20 +1,20 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFeedbackRequest;
+use App\Http\Requests\StoreFeedBackRequest;
 use App\Models\App;
-use App\Models\Feedback;
-use App\Services\FeedbackService;
+use App\Models\FeedBack;
+use App\Services\FeedBackService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
-class FeedbackController extends Controller
+class FeedBackController extends Controller
 {
     protected FeedbackService $service;
 
-    public function __construct(FeedbackService $service)
+    public function __construct(FeedBackService $service)
     {
         $this->service = $service;
     }
@@ -30,7 +30,7 @@ class FeedbackController extends Controller
 }
 
 
-public function store(StoreFeedbackRequest $request)
+public function store(StoreFeedBackRequest $request)
 {
     $this->service->submitFeedback([
         'user_id' => $request->input('user_id'),
@@ -64,7 +64,7 @@ public function store(StoreFeedbackRequest $request)
 
 public function index(Request $request)
 {
-    $query = Feedback::with('user');
+    $query = FeedBack::with('user');
 
     if ($search = $request->input('search')) {
         $query->whereHas('user', function ($q) use ($search) {
