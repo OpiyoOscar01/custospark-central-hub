@@ -21,13 +21,12 @@
   <style>
     body {
       background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-      url('{{ asset('background-images/bg3.png') }}');
+      url('{{ asset('images/bg.png') }}');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
     }
   </style>
-
   @yield('styles')
 </head>
 <body class="min-h-screen flex flex-col text-white relative overflow-x-hidden ">

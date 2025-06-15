@@ -18,7 +18,7 @@
                 </div>
                 <h1 class="text-2xl font-bold text-gray-900">Register App</h1>
             </div>
-            <a href="{route('apps.index')}" class="text-blue-500 hover:text-gray-700">
+            <a href="{{route('apps.index')}}" class="text-blue-500 hover:text-gray-700">
                 <i class="bi bi-x-lg text-xl"></i>
             </a>
         </div>
