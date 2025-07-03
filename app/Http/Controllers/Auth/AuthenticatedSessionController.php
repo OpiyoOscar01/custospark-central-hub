@@ -68,8 +68,6 @@ class AuthenticatedSessionController extends Controller
         if(!$user->two_factor_enabled){
             return $this->loginWithTwoFaDisabled($request, app(SSOCookieService::class));
         }
-        
-
         // Generate a 6-digit verification code
         $verificationCode = rand(100000, 999999);
 
@@ -261,12 +259,13 @@ public function loginWithTwoFaDisabled(LoginRequest $request, SSOCookieService $
     if ($redirect = Self::redirectToJobsIfSessionSet($cookie)) {
         return $redirect;
     }
-    if($redirect = Self::redirectToIntendedPage($cookie)){
+    $redirectUrl = session('url.intended');
+    $redirect = Self::redirectToIntendedPage($cookie);
+    if($redirect && $redirect instanceof RedirectResponse && $redirectUrl){
         return $redirect;
     }
     if ($matchedApp) {
         $redirectUrl = $matchedApp->base_url.'/dashboard';
-
         return redirect()->away($redirectUrl)
             ->withCookie($cookie)
             ->with(['success' => 'Login successful.']);
