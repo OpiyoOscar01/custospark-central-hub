@@ -158,7 +158,9 @@ class AuthenticatedSessionController extends Controller
         return $redirect;
     }
     //Redirect to intended page if session is set
-    if ($redirect = Self::redirectToIntendedPage($cookie)) {
+    $redirectUrl = session('url.intended');
+    $redirect = Self::redirectToIntendedPage($cookie);
+    if($redirect && $redirect instanceof RedirectResponse && $redirectUrl){
         return $redirect;
     }
     // Step 6: Redirect to matched app or fallback URL
