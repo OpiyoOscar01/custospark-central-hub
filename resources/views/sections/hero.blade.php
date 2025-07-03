@@ -69,16 +69,19 @@
     use Illuminate\Support\Facades\DB;
 
     // Retrieve apps with lowest plan price, plan type, and trial days for pricing logic
-    $apps = App::select(
-            'apps.id', 
-            'apps.name', 
-            'apps.slug', 
-            'apps.icon_url', 
-            'apps.description',
-            DB::raw('(SELECT MIN(plans.price) FROM plans WHERE plans.app_id = apps.id) as starting_price'),
-            DB::raw('(SELECT plans.plan_type FROM plans WHERE plans.app_id = apps.id ORDER BY plans.price ASC LIMIT 1) as plan_type'),
-            DB::raw('(SELECT plans.trial_days FROM plans WHERE plans.app_id = apps.id ORDER BY plans.price ASC LIMIT 1) as trial_days')
-        )->get();
+  $apps = App::select(
+        'apps.id', 
+        'apps.name', 
+        'apps.slug', 
+        'apps.icon_url', 
+        'apps.description',
+        DB::raw('(SELECT MIN(plans.price) FROM plans WHERE plans.app_id = apps.id) as starting_price'),
+        DB::raw('(SELECT plans.plan_type FROM plans WHERE plans.app_id = apps.id ORDER BY plans.price ASC LIMIT 1) as plan_type'),
+        DB::raw('(SELECT plans.trial_days FROM plans WHERE plans.app_id = apps.id ORDER BY plans.price ASC LIMIT 1) as trial_days')
+    )
+    ->where('apps.status', 'active') // This line filters only active apps
+    ->get();
+
 
     $defaultIcon = asset('images/custospark.png'); // Default icon fallback
     @endphp
